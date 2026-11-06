@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0",
+  "last_reviewed": "2026-11-06",
+  "description": "Public project capabilities and crawler identities. No credentials or live models are included.",
+  "providers": [
+    {
+      "id": "openai",
+      "label": "OpenAI API",
+      "api_base_url": "https://api.openai.com/v1",
+      "api_key_environment_variable": "OPENAI_API_KEY",
+      "monitor_modes": [
+        "models",
+        "chat",
+        "responses"
+      ],
+      "models_route": "/models",
+      "inference_route": "/chat/completions",
+      "model_ids": "Discover via authenticated /models; not hardcoded"
+    },
+    {
+      "id": "anthropic",
+      "label": "Anthropic Claude API",
+      "api_base_url": "https://api.anthropic.com/v1",
+      "api_key_environment_variable": "ANTHROPIC_API_KEY",
+      "monitor_modes": [
+        "models",
+        "chat"
+      ],
+      "models_route": "/models",
+      "inference_route": "/messages",
+      "model_ids": "Discover via authenticated /models; not hardcoded"
+    },
+    {
+      "id": "kimi",
+      "label": "Kimi (Moonshot) API",
+      "api_base_url": "https://api.moonshot.ai/v1",
+      "api_key_environment_variable": "KIMI_API_KEY",
+      "monitor_modes": [
+        "models",
+        "chat"
+      ],
+      "models_route": "/models",
+      "inference_route": "/chat/completions",
+      "model_ids": "Discover via authenticated /models; not hardcoded"
+    },
+    {
+      "id": "mistral",
+      "label": "Mistral API",
+      "api_base_url": "https://api.mistral.ai/v1",
+      "api_key_environment_variable": "MISTRAL_API_KEY",
+      "monitor_modes": [
+        "models",
+        "chat"
+      ],
+      "models_route": "/models",
+      "inference_route": "/chat/completions",
+      "model_ids": "Discover via authenticated /models; not hardcoded"
+    }
+  ],
+  "ai_crawlers": [
+    {
+      "agent": "OAI-SearchBot",
+      "operator": "OpenAI",
+      "role": "search-discovery",
+      "source": "https://developers.openai.com/api/docs/bots"
+    },
+    {
+      "agent": "GPTBot",
+      "operator": "OpenAI",
+      "role": "training-crawler",
+      "source": "https://developers.openai.com/api/docs/bots"
+    },
+    {
+      "agent": "ChatGPT-User",
+      "operator": "OpenAI",
+      "role": "user-initiated-fetch",
+      "source": "https://developers.openai.com/api/docs/bots"
+    },
+    {
+      "agent": "Claude-SearchBot",
+      "operator": "Anthropic",
+      "role": "search-discovery",
+      "source": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+    },
+    {
+      "agent": "ClaudeBot",
+      "operator": "Anthropic",
+      "role": "training-crawler",
+      "source": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+    },
+    {
+      "agent": "Claude-User",
+      "operator": "Anthropic",
+      "role": "user-initiated-fetch",
+      "source": "https://support.claude.com/en/articles/8896518-does-anthropic-crawl-data-from-the-web-and-how-can-site-owners-block-the-crawler"
+    },
+    {
+      "agent": "Google-Extended",
+      "operator": "Google",
+      "role": "usage-control-token-not-separate-http-user-agent",
+      "source": "https://developers.google.com/crawling/docs/crawlers-fetchers/google-common-crawlers"
+    }
+  ],
+  "notes": [
+    "Provider APIs and website crawling user agents are separate concepts.",
+    "Google-Extended is a robots.txt product token, not a distinct HTTP user-agent.",
+    "No verified public crawler token is claimed for Kimi/Mistral here.",
+    "Index is static metadata, not a live uptime or model inventory."
+  ]
+}

@@ -50,3 +50,11 @@ After publishing, select **Releases → Draft a new release** and create the tag
 
 - Network visibility from your ISP to the cloud and LLM APIs.
 - One Python CLI for network reachability, cloud checks, and LLM availability.
+
+## LLM and bot indexing
+
+The repo contains `llms.txt`, `llms-full.txt`, `docs/LLM_INDEX.md`, `docs/LLM_USAGE.md`, `docs/AI_BOT_INDEX.md`, `AGENTS.md`, and the public `llm_index.json`. They are useful to humans, code assistants, and AI tooling reading the repository. They do not guarantee LLM search placement.
+
+If you host a documentation website on your own domain, publish `llms.txt` and an intentional `robots.txt` policy at the website root and check linked URLs after deploy. A `robots.txt` committed to the GitHub repository does not control crawling of GitHub's domain.
+
+**Additional suggested GitHub topics:** `llms-txt`, `ai-crawlers`, `ai-agents`, `model-monitoring`.

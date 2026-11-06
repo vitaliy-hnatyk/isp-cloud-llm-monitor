@@ -740,6 +740,7 @@ def get_parser():
     parser.add_argument("--cloud-only", action="store_true", help="Skip non-cloud default TCP checks; keep AWS and Azure defaults")
     parser.add_argument("--no-cloud-defaults", action="store_true", help="Skip global AWS/Azure website targets")
     parser.add_argument("--list-cloud-regions", action="store_true", help="Print supported AWS/Azure regional presets and exit")
+    parser.add_argument("--list-llm-providers", action="store_true", help="Print configured LLM API presets, keys and supported probe modes; no network calls")
     parser.add_argument("--aws-region", action="append", default=[], choices=sorted(AWS_REGIONS), metavar="REGION",
                         help="Add AWS regional S3 TCP:443 target; repeat (e.g. eu-central-1, us-east-1)")
     parser.add_argument("--azure-region", action="append", default=[], choices=sorted(AZURE_REGIONS), metavar="REGION",
@@ -818,6 +819,13 @@ def main(argv=None):
             load_env_file(args.env_file)
         except ValueError as exc:
             parser.error(str(exc))
+    if args.list_llm_providers:
+        print("Built-in LLM provider index (presets, not a live account model listing):")
+        for key, (label, base, key_env) in LLM_PRESETS.items():
+            modes = "models, chat, responses" if key == "openai" else "models, chat"
+            print(f"  {key:<12} {label} | API: {base} | key env: {key_env} | modes: {modes}")
+        print("\nFor a live model-ID index, see docs/LLM_USAGE.md (scripts/fetch_model_index.py).")
+        return 0
     if args.list_cloud_regions:
         print("AWS S3 TCP:443 presets:")
         for code, label in AWS_REGIONS.items():

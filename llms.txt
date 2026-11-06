@@ -1,0 +1,24 @@
+# ISP Cloud & LLM Monitor
+
+> Open-source Python CLI for ISP diagnostics, AWS/Azure reachability, and OpenAI, Anthropic Claude, Kimi (Moonshot) and Mistral API health checks, generating offline HTML and CSV reports. No secrets are bundled.
+
+The bundled report and screenshots are **simulated demo data**, not live ISP or cloud measurements. SSH checks banners, not authentication. LLM model-listing tests availability, not inference speed. Never paste API keys into source code, issues, or generated reports. Crawler identification and LLM API providers are different concepts.
+
+## Start here
+
+- [README.md](README.md): Features, setup, CLI commands, report interpretation, images, testing.
+- [LLM usage guide](docs/LLM_USAGE.md): API key setup, model listing, live monitoring and inference examples.
+- [LLM provider and model index](docs/LLM_INDEX.md): Built-in vendor endpoints and how to generate an account-specific model catalog.
+- [AI bot/crawler index](docs/AI_BOT_INDEX.md): User-agent registry and explanations of robots policy.
+
+## Machine-readable references
+
+- [LLM and crawler registry](llm_index.json): Public JSON with presets and documented crawler tokens, no credentials.
+- [Agent/contributor instructions](AGENTS.md): Safe automation and source-of-truth guidance.
+- [Crawler sample policy](robots.txt): Only effective when deployed at an origin's website root.
+
+## Optional
+
+- [Full LLM-readable documentation](llms-full.txt): Expanded project context.
+- [GitHub repository details](REPOSITORY_DETAILS.md): Topic tags, description and publishing instructions.
+- [Security and privacy](SECURITY.md): Secret handling and safe reporting.

@@ -4,19 +4,34 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
   tests:
-    runs-on: ubuntu-latest
+    name: Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.9', '3.11', '3.13']
+        include:
+          # Python 3.9 is not available on the Ubuntu 26.04 image.
+          - os: ubuntu-24.04
+            python-version: '3.9'
+          - os: ubuntu-latest
+            python-version: '3.11'
+          - os: ubuntu-latest
+            python-version: '3.13'
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - name: Check out repository
+        uses: actions/checkout@v7
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Check syntax
-        run: python -m py_compile provider_monitor.py
+      - name: Display Python version
+        run: python --version
+      - name: Check Python syntax
+        run: python -m py_compile provider_monitor.py scripts/build_llm_index.py scripts/fetch_model_index.py
       - name: Run offline tests
         run: python -m unittest discover -s tests -v

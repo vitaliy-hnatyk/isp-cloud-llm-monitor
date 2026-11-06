@@ -1,0 +1,29 @@
+# Example only. Serves as crawler policy ONLY at https://YOUR-DOMAIN/robots.txt.
+# GitHub repository file alone cannot control github.com crawler policy.
+# Search / user-triggered reads allowed, known training uses opted out by default.
+# Review this policy for your actual website and preferences.
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+# Google-Extended is a usage-control token, NOT a separate HTTP bot agent.
+# Disallow may also affect Gemini grounding; see docs/AI_BOT_INDEX.md.
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: *
+Allow: /

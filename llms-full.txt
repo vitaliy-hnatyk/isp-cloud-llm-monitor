@@ -1,0 +1,47 @@
+# ISP Cloud & LLM Monitor — expanded LLM documentation
+
+> This optional document is a compact, LLM-readable summary of what the repository does and how to operate it. Follow README.md and docs/*.md for complete instructions.
+
+## Purpose
+
+The project is a standard-library Python 3.9+ command-line diagnostics utility. It probes TCP, SSH banner, HTTP/HTTPS, DNS, ICMP, AWS regional S3 reachability, Azure Monitor regional reachability, and optional authenticated LLM model-listing or text-generation endpoints. It creates a local HTML dashboard and CSV. Sample HTML/CSV/screenshots are SIMULATED.
+
+## Install and run
+
+Use Python 3.9+. Run `python provider_monitor.py --help` to see every option.
+
+- Demo without keys or network: `python provider_monitor.py --all-tests --llm-all-providers --demo --output demo_report.html`
+- Core ISP/cloud checks: `python provider_monitor.py --all-tests --minutes 10 --interval 30`
+- LLM provider listing without credentials: `python provider_monitor.py --list-llm-providers`
+- LLM model-list health checks: `python provider_monitor.py --no-default-targets --llm-all-providers --llm-mode models --env-file api_keys.env --minutes 5 --interval 60`
+- Public bot and LLM preset index: `python scripts/build_llm_index.py`
+- Account model ID discovery: `python scripts/fetch_model_index.py --all-providers --env-file api_keys.env`
+
+## Providers
+
+- OpenAI: `https://api.openai.com/v1`, `OPENAI_API_KEY`, models/chat/responses.
+- Anthropic: `https://api.anthropic.com/v1`, `ANTHROPIC_API_KEY`, models/native Messages as chat.
+- Kimi: `https://api.moonshot.ai/v1`, `KIMI_API_KEY`, models/chat.
+- Mistral: `https://api.mistral.ai/v1`, `MISTRAL_API_KEY`, models/chat.
+
+Do not assume an API model ID; discover it with `/models` or the provider dashboard before inference. Inference may cost money. The probe does not evaluate language quality. Its HTTP completion time includes network and remote processing time, and is not equivalent to ping.
+
+## Agent/crawler discovery and publication
+
+- `llms.txt` is a proposed, voluntary Markdown site/resource index; it does not grant/deny permissions and adoption is not guaranteed.
+- `robots.txt` is an example crawler policy to deploy at the root of a website you control, not a policy for github.com.
+- `llm_index.json` includes the provider index and documented OpenAI/Anthropic crawler user agents plus Google-Extended product token.
+- `docs/AI_BOT_INDEX.md` describes search agents, training agents and user-request fetchers separately.
+
+## Privacy, testing and limitations
+
+Keys are supplied via `api_keys.env` or environment variables. Never commit credentials or report them. `model_index.json` is account-specific and gitignored. Do not run billable live inference in CI. Run offline unit tests: `python -m unittest discover -s tests -v`. No bundled demo represents real measurements. Website endpoint reachability is not proof of an ISP's responsibility for an outage.
+
+## Primary documentation
+
+- [README](README.md)
+- [LLM usage](docs/LLM_USAGE.md)
+- [LLM and model index](docs/LLM_INDEX.md)
+- [AI crawler index](docs/AI_BOT_INDEX.md)
+- [Agent guidance](AGENTS.md)
+- [Security](SECURITY.md)

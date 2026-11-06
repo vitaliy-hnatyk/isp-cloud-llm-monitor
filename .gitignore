@@ -27,3 +27,6 @@ demo_report.csv
 Thumbs.db
 .vscode/
 .idea/
+
+# Local account-specific provider model inventory
+model_index.json
