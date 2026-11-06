@@ -1,0 +1,29 @@
+# Credentials (never commit)
+api_keys.env
+api_keys.*.env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local Python artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Generated reports (examples are checked in separately)
+provider_report*.html
+provider_report*.csv
+provider_report_demo*.html
+provider_report_demo*.csv
+demo_report.html
+demo_report.csv
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
